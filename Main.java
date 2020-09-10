@@ -1,103 +1,92 @@
-package by.kiparo.array;
+package by.kiparo;
 
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-    Scanner massive = new Scanner(System.in);
-    int array[] = new int[10];
-    System.out.println("Введите 10 целочиленных элементов массива:");
-    for (int i = 0; i<array.length; i++){
-        array[i] = massive.nextInt();
-    }
-    System.out.print("Элементы введенного вами массива");
-    for (int i=0; i<array.length; i++) {
-        System.out.print(" "+array[i]);
-    }
-System.out.println();
-int max = array[0];
-int min = array[0];
-for (int i=0; i<array.length; i++) {
-    if (array[i] >= max) {
-        max = array[i];
-    }
-    if (array[i] <= min) {
-        min = array[i];
-    }
-}
-System.out.println("max value=" + max + "  min value="+ min);
-        for (int i=0; i<array.length; i++) {
-            if (array[i] == max) {
-                 array[i]=99;
-            }
-            if (array[i] == min) {
-                array[i]=0;
-            }
+        Shape shape = null;
+
+        switch (figureSelection()) {
+            case 1:
+                shape = new Rectangle(enterWidth(), enterHeight());
+                break;
+            case 2:
+                shape = new Square(sideSize());
+                break;
+            case 3:
+                shape = new Circle(enterRadious());
+                break;
+            case 4:
+                shape = new Triangle(firstSide(),secondSide(),enterAngle());
+                break;
+            default:
+                System.out.println("default");
         }
-        System.out.println("Элементы нового массива");
-        for (int i=0; i<array.length; i++) {
-            System.out.print(" "+array[i]);
+        if (shape != null) {
+            printInfo(shape);
+        } else {
+            System.out.println("вы не выбрали фигуру");
         }
+    }
 
+    public static void printInfo(Shape shape) {
+        shape.printInfo();
+    }
+
+    public static int figureSelection() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("выберите фигуру: 1 - прямоугольник, 2 - квадрат, 3 - круг, 4 - треугольник");
+        int number = sc.nextInt();
+        return (number);
+    }
+
+    public static double enterRadious() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter radius value: ");
+        double radius = sc.nextDouble();
+        return (radius);
+    }
+
+    public static double enterWidth() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter width size: ");
+        double width = sc.nextDouble();
+        return (width);
+    }
+
+    public static double enterHeight() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter height size: ");
+        double height = sc.nextDouble();
+        return (height);
+    }
+
+    public static double firstSide() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter firstSide size: ");
+        double firstSide = sc.nextDouble();
+        return (firstSide);
+    }
+
+    public static double secondSide() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter secondSide size: ");
+        double secondSide = sc.nextDouble();
+        return (secondSide);
+    }
+
+    public static double enterAngle() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter angle value in degrees: ");
+        double angle = sc.nextDouble();
+        return (angle);
+    }
+
+    public static double sideSize() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter side size: ");
+        double sideSize = sc.nextDouble();
+        return (sideSize);
     }
 }
-package by.kiparo.main;
-
-public class Main {
-    public static void main (String [] args){
-
-        ElectricalAppliance electricalAppliance = new ElectricalAppliance(45, "white",true );
-        VacuumCleaner vacuumCleaner = new VacuumCleaner(90, "red",true,40,25,true);
-        VacuumCleanerXiaomi vacuumCleanerXiaomi = new VacuumCleanerXiaomi(67,"black",false,46,78,true,"P-Light",true);
-        VacuumCleanerXiaomiRobot vacuumCleanerXiaomiRobot = new VacuumCleanerXiaomiRobot(45,"blue",true,30,40,true,"Summer",false,400,true,2);
-        Kettle kettle = new Kettle(56,"white",false,"spiral",5);
-        KettleSamsung kettleSamsung = new KettleSamsung(100,"green", true, "doubleSpiral",6,"Easy",true);
-        HairDryer hairDryer = new HairDryer(90,"black", true, 5,true);
-        HairDryerBosh hairDryerBosh = new HairDryerBosh(45, "purple",false,8,true,4,true);
-        Mobile mobile = new Mobile(60, "metallic", true,5,"A72",80,30);
-        MobileHuawei mobileHuawei = new MobileHuawei(50,"yellow",true,45,"GG78", 90,32,true,"Pro20",2);
-
-        electricalAppliance.info();
-        kettleSamsung.info1();
-        vacuumCleanerXiaomi.info1();
-
-        System.out.println("Сolors of my technique: " + "  kettle - " + kettleSamsung.color + "  hairDryer - " + hairDryerBosh.color + "  vacuumCleaner - " + vacuumCleanerXiaomi.color + "  mobile - " + mobileHuawei.color);
-    }
-
-}
-    package by.kiparo.Cars;
-
-    import java.util.Scanner;
-
-    public class Main {
-
-    public static final int CARSSIZE = 3;
-    public static void main(String[] arg) {
-
-    Car[] cars = new Car[CARSSIZE];
-    for (int i = 0; i < cars.length; i++) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("Введите марку авто");
-    String brand = scanner.nextLine();
-    System.out.println("Введите объем бака автомобиля");
-    int tankVolume = scanner.nextInt();
-    System.out.println("Выберите верное: коробка автомат - true; механика - false");
-    boolean transmission = scanner.nextBoolean();
-    Car car = new Car(brand, tankVolume, transmission);
-    cars[i] = car;
-    }
-    for (int i = 0; i < cars.length; i++) {
-    System.out.println("Car model: " + cars[i].brand + "  Tank volume: " + cars[i].tankVolume + "  Automаtic transmission: " + cars[i].transmission);
-    }
-    System.out.println("Введите марку авто для поиска");
-    Scanner scanner = new Scanner(System.in);
-    String brand = scanner.nextLine();
-
-    for (int i = 0; i < cars.length; i++) {
-    if (cars[i].brand.equals(brand.toUpperCase())) {
-    System.out.println("Car model: " + cars[i].brand + "  Tank volume: " + cars[i].tankVolume + "  Automаtic transmission: " + cars[i].transmission);
-    break;
-    }
-    }
-    }
-    }
