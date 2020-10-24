@@ -1,31 +1,23 @@
 import java.util.Scanner;
 
-public class AlfaBank extends Bank implements AddBankName, AtmManufacturer, AddMoney, EnterSumReplenish, EnterSumWithdraw, WithdrawMoney {
-    @Override
-    public void printAccountInfo() {
-        System.out.println("Available money: " + "byn100: " + getByn100() + "  byn50: " + getByn50() + "  byn20: " + getByn20());
-    }
+public class AlfaBank implements BankName, AtmManufacturer, AddMoney, EnterSumWithdraw, WithdrawMoney {
 
-    public AlfaBank(int sum, int byn100, int byn50, int byn20) {
-        super(sum, byn100, byn50, byn20);
+    private Bank bank;
+    private final static String NameBank = "AlfaBank";
+    private final static String NameBankManufacturer = "Diebold Incorporated";
+
+    public AlfaBank(Bank bank) {
+        this.bank = bank;
     }
 
     @Override
     public String getBankName() {
-        return "AlfaBank";
+        return NameBank;
     }
 
     @Override
     public String getAtmManufacturerName() {
-        return "Diebold Incorporated";
-    }
-
-    @Override
-    public int enterReplenishSum() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the amount to replenish your bank account");
-        int sum = sc.nextInt();
-        return sum;
+        return NameBankManufacturer;
     }
 
     @Override
@@ -41,7 +33,7 @@ public class AlfaBank extends Bank implements AddBankName, AtmManufacturer, AddM
         int wholePartDivid100, wholePartDivid50, wholePartDivid20;
         boolean atmAnswer;
 
-        if (getByn100() * 100 + getByn50() * 50 + getByn20() * 20 >= sum && sum % 10 == 0) {
+        if (bank.getByn100() * 100 + bank.getByn50() * 50 + bank.getByn20() * 20 >= sum && sum % 10 == 0) {
             atmAnswer = true;
             System.out.println(atmAnswer + "  Requested amount of money:  " + sum);
             System.out.println("To issue from the account:");
@@ -73,17 +65,17 @@ public class AlfaBank extends Bank implements AddBankName, AtmManufacturer, AddM
             atmAnswer = true;
             System.out.println(atmAnswer);
             wholePartDivid100 = sum / 100;
-            quantityByn100 = getByn100() + wholePartDivid100;
+            quantityByn100 = bank.getByn100() + wholePartDivid100;
             System.out.println("Number of 100byn:  " + wholePartDivid100);
 
             sum = sum - wholePartDivid100 * 100;
             wholePartDivid50 = sum / 50;
-            quantityByn50 = getByn50() + wholePartDivid50;
+            quantityByn50 = bank.getByn50() + wholePartDivid50;
             System.out.println("Number of 50byn:  " + wholePartDivid50);
 
             sum = sum - wholePartDivid50 * 50;
             wholePartDivid20 = sum / 20;
-            quantityByn20 = getByn20() + wholePartDivid20;
+            quantityByn20 = bank.getByn20() + wholePartDivid20;
             System.out.println("Number of 20byn:  " + wholePartDivid20);
             System.out.println("Now on your account:  " + "Number of 100byn: " + quantityByn100 + "  Number of 50byn: " + quantityByn50 + "  Number of 20byn: " + quantityByn20);
 

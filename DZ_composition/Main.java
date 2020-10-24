@@ -1,20 +1,20 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        AlfaBank alfaBank = new AlfaBank(300, 20, 2, 3);
-
-        printInfo(alfaBank);
+        Bank bank = new Bank(300, 10, 5, 20);
+        AlfaBank alfaBank = new AlfaBank(bank);
+        printInfo(bank);
         printInterfaceAddBankName(alfaBank);
         printAtmManufacturerName(alfaBank);
-
-        alfaBank.withdrawMoney(alfaBank.enterWithdrawSum());
-        if (alfaBank.addMoney(alfaBank.enterReplenishSum()) != true) {
+        if (alfaBank.addMoney(entersum()) != true) {
             System.out.println("Wrong nominal!!! Pleas, enter the correct ammount");
         }
-        alfaBank.addMoney(alfaBank.enterReplenishSum());
+        alfaBank.withdrawMoney(alfaBank.enterWithdrawSum());
     }
 
-    public static void printInterfaceAddBankName(AddBankName addBankName) {
+    public static void printInterfaceAddBankName(BankName addBankName) {
         System.out.println("ваc обслуживает банк: " + addBankName.getBankName());
     }
 
@@ -24,5 +24,12 @@ public class Main {
 
     public static void printInfo(Bank bank) {
         bank.printAccountInfo();
+    }
+
+    public static int entersum() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the amount to replenish your bank account");
+        int sum = sc.nextInt();
+        return sum;
     }
 }

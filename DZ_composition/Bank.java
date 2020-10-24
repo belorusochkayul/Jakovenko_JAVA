@@ -1,10 +1,9 @@
-public abstract class Bank {
+public class Bank {
     private int sum;
     private int byn100;
     private int byn50;
     private int byn20;
 
-    public abstract void printAccountInfo();
 
     public Bank(int sum, int byn100, int byn50, int byn20) {
         this.sum = sum;
@@ -27,5 +26,9 @@ public abstract class Bank {
 
     public int getByn20() {
         return byn20;
+    }
+
+    public void printAccountInfo() {
+        System.out.println("Available money: " + "byn100: " + getByn100() + "  byn50: " + getByn50() + "  byn20: " + getByn20());
     }
 }
