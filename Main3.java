@@ -13,22 +13,28 @@ public class Main3 {
         String name = scanner.nextLine();
         System.out.println("Введите возраст студента");
         int age = scanner.nextInt();
-        Student student = new Student(name, age);
-        students.add(new Student(student.getName(), student.getAge()));
+        students.add(new Student(name, age));
         printInput(students);
-        search(students);
+
+        System.out.println("Введите возраст студента для поиска");
+        Scanner scan = new Scanner(System.in);
+        int ageForSearch = scan.nextInt();
+        List<Student> seachResult = search(students, ageForSearch);
+        System.out.println("Найденные студенты: ");
+        printInput(seachResult);
     }
 
-    public static void search(List<Student> students) {
-        System.out.println("Введите возраст студента для поиска");
-        Scanner scanner = new Scanner(System.in);
-        int ageForSearch = scanner.nextInt();
+    public static List<Student> search(List<Student> students, int ageForSearch) {
+
+        List<Student> filter = new ArrayList<>();
+
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getAge() == ageForSearch) {
-                System.out.println("Найденный студент: " + students.get(i).getName() + students.get(i).getAge());
+                filter.add(students.get(i));
                 break;
             }
         }
+        return filter;
     }
 
     public static void printInput(List<Student> students) {
