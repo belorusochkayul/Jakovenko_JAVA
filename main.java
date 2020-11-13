@@ -44,9 +44,8 @@ public class Main {
                 carsFilter[j] = cars[i];
                 j++;
             }
-        }
+
         Car[] carsResult = new Car[j];
         System.arraycopy(carsFilter, 0, carsResult, 0, j);
         return carsResult;
     }
-}
