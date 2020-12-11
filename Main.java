@@ -13,7 +13,7 @@ public class Main {
 
             Field fieldFloat = classFruit.getDeclaredField("weight");
             fieldFloat.setAccessible(true);
-            fieldFloat.setFloat(fruit, 220);
+            fieldFloat.setFloat(fruit, (float) 220.45);
 
             Field fieldInt = classFruit.getDeclaredField("calories");
             fieldInt.setAccessible(true);
