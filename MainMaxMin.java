@@ -1,41 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.OptionalInt;
 import java.util.Scanner;
 
 public class MainMaxMin {
-    public static void main(String[] args) {
-        Scanner massive = new Scanner(System.in);
-        int array[] = new int[10];
-        System.out.println("Введите 10 целочиленных элементов массива:");
-        for (int i = 0; i<array.length; i++){
-            array[i] = massive.nextInt();
-        }
-        System.out.print("Элементы введенного вами массива");
-        for (int i=0; i<array.length; i++) {
-            System.out.print(" "+array[i]);
-        }
-        System.out.println();
-        int max = array[0];
-        int min = array[0];
-        for (int i=0; i<array.length; i++) {
-            if (array[i] >= max) {
-                max = array[i];
-            }
-            if (array[i] <= min) {
-                min = array[i];
-            }
-        }
-        System.out.println("max value=" + max + "  min value="+ min);
-        for (int i=0; i<array.length; i++) {
-            if (array[i] == max) {
-                array[i]=99;
-            }
-            if (array[i] == min) {
-                array[i]=0;
-            }
-        }
-        System.out.println("Элементы нового массива");
-        for (int i=0; i<array.length; i++) {
-            System.out.print(" "+array[i]);
-        }
 
+    public static void main(String[] args) {
+        System.out.println("Введите N целочиленных элементов массива:");
+        List<Integer> list = new ArrayList<>();
+        input(list);
+
+        OptionalInt min = list
+                .stream()
+                .mapToInt(Integer::intValue)
+                .min();
+        Integer resultMin = min.getAsInt();
+
+
+        OptionalInt max = list
+                .stream()
+                .mapToInt(Integer::intValue)
+                .max();
+        Integer resultMax = max.getAsInt();
+
+        list.stream()
+                .map(val -> val.toString())
+                .map(val -> val.replaceAll(resultMax.toString(), "99"))
+                .map(val -> val.replaceAll(resultMin.toString(), "0"))
+                .forEach(val -> System.out.println(val));
     }
-} 
+
+    public static void input(List<Integer> list) {
+        Scanner scanner = new Scanner(System.in);
+        boolean end = false;
+        final int EXIT = 0;
+        do {
+            Integer val = scanner.nextInt();
+            if (val.equals(EXIT)) break;
+            list.add(val);
+        } while (!end);
+    }
+}

@@ -1,44 +1,31 @@
 package kipaaro.com;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainSort {
 
     public static void main(String[] args) {
+        System.out.println("Введите ваш массив целых чисел:");
+        List<Integer> list = new ArrayList<>();
+        input(list);
+        System.out.println("Числа, отсортированные в порядке возрастания: ");
+        list
+                .stream()
+                .distinct()
+                .sorted()
+                .forEach(val -> System.out.println(val));
+    }
 
-        System.out.println("Введите размер масива:");
+    public static void input(List<Integer> list) {
         Scanner scanner = new Scanner(System.in);
-        int size = scanner.nextInt();
-        int[] mas = new int[size];
-        int i = 0;
-
-        for (int element : mas) {
-            System.out.println("Введите " + (i + 1) + "-й элемент :");
-            mas[i] = scanner.nextInt();
-            i++;
-        }
-        System.out.print("Сформированный вами массив: ");
-
-        for (int element : mas) {
-            System.out.print(element + "");
-        }
-        boolean isSorted = false;
-        int buf;
-        while (!isSorted) {
-            isSorted = true;
-
-            for (int j = 0; j < mas.length - 1; j++) {
-                if (mas[j] > mas[j + 1]) {
-                    isSorted = false;
-                    buf = mas[j];
-                    mas[j] = mas[j + 1];
-                    mas[j + 1] = buf;
-                }
-            }
-        }
-        System.out.print("  Отсортированный массив: ");
-        for (int element : mas) {
-            System.out.print(+element + "");
-        }
+        boolean end = false;
+        final int EXIT = 0;
+        do {
+            Integer val = scanner.nextInt();
+            if (val.equals(EXIT)) break;
+            list.add(val);
+        } while (!end);
     }
 }
