@@ -59,27 +59,35 @@ public class Room implements Describe {
         return totalLight;
     }
 
-    public boolean isIlluminanceCorrect(int lampLight) {
+    public boolean isIlluminanceUpperLimitCorrect(int lampLight) {
         int totalLight = getTotalLightOfLamps() + lampLight;
         int illuminationResult = totalLight + (getWindowQuantity() * WINDOWLIGHT);
-        if (illuminationResult < MAXLIGHT && illuminationResult > MINLIGHT) {
+        if (illuminationResult < MAXLIGHT) {
+            return true;
+        }
+        return false;
+    }
+    public boolean isIlluminanceLowLimitCorrect(int lampLight) {
+        int totalLight = getTotalLightOfLamps() + lampLight;
+        int illuminationResult = totalLight + (getWindowQuantity() * WINDOWLIGHT);
+        if (illuminationResult > MINLIGHT) {
             return true;
         }
         return false;
     }
 
-    public void addLight(Light lamp) throws IlluminanceTooMuchException {
-        if (isIlluminanceCorrect(lamp.getLampLight()) == true) {
+    public void addLight(Light lamp) throws IlluminanceTooMuchException,IlluminanceTooLowException {
+        if (isIlluminanceUpperLimitCorrect(lamp.getLampLight()) == true) {
             lamps.add(lamp);
         } else {
-            try {
-                throw new IlluminanceTooMuchException();
-            } catch (IlluminanceTooMuchException e) {
-                e.printStackTrace();
-            }
+            throw new IlluminanceTooMuchException() ;
+        }
+        if (isIlluminanceLowLimitCorrect(lamp.getLampLight()) == true) {
+            lamps.add(lamp);
+        } else {
+            throw new IlluminanceTooLowException();
         }
     }
-
     // предметы
     public int getOccupiedSquare() {
         int totalSquare = 0;
@@ -95,6 +103,10 @@ public class Room implements Describe {
         int roomSquare = getRoomSquare();
         freeSquare = roomSquare - notFree;
         return freeSquare;
+    }
+
+    public static boolean isCarNumber(String number) {
+        return true;
     }
 
     public int space() {

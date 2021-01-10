@@ -23,7 +23,7 @@ public class Main {
             room1.addLight(light1);
             room1.addLight(light2);
             room2.addLight(light1);
-        } catch (IlluminanceTooMuchException e) {
+        } catch (IlluminanceTooLowException | IlluminanceTooMuchException e) {
             e.printStackTrace();
         }
         try {
