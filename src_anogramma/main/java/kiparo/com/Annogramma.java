@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Annogramma {
 
-    public boolean checkAnagram(String firstWord, String secondWord) {
+    public static boolean checkAnagram(String firstWord, String secondWord) {
         firstWord = firstWord.toLowerCase();
         secondWord = secondWord.toLowerCase();
 
