@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DomParser implements ParserStrategy, Variables {
@@ -27,7 +28,8 @@ public class DomParser implements ParserStrategy, Variables {
 
         String bankName = null;
         String bankLocation = null;
-        String date = null;
+        String dateStr = null;
+        Date date = null;
         int baseCurrencyId = 0;
         Node currencyNode = null;
         for (int i = 0; i < rootChilds.getLength(); i++) {
@@ -45,7 +47,9 @@ public class DomParser implements ParserStrategy, Variables {
                     break;
                 }
                 case TAG_DATE: {
-                    date = rootChilds.item(i).getTextContent();
+                    dateStr = rootChilds.item(i).getTextContent();
+                    DateParse dateParse = new DateParse();
+                    date = dateParse.strToDate(dateStr);
                     break;
                 }
                 case TAG_BASE_CURRENCY_ID: {

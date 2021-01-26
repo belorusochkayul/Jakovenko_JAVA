@@ -1,11 +1,13 @@
 package parsing;
 
+import java.util.Date;
 import java.util.List;
 
 public class Root {
     private String bankName;
     private String bankLocation;
-    private String date;
+    private String dateStr;
+    private Date date;
     private int baseCurrencyId;
     private List<Currency> currency;
 
@@ -25,11 +27,12 @@ public class Root {
         this.bankLocation = bankLocation;
     }
 
-    public String getDate() {
+
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -48,13 +51,20 @@ public class Root {
     public void setCurrencies(List<Currency> currencies) {
         this.currency = currencies;
     }
+    public void setDateStr(String dateStr) {
+        this.dateStr = dateStr;
+    }
+
+    public String getDateStr() {
+        return dateStr;
+    }
 
     @Override
     public String toString() {
         return "Root{" +
                 "bankName='" + bankName + '\'' +
                 ", bankLocation='" + bankLocation + '\'' +
-                ", date=" + date +
+                ", date=" + dateStr +
                 ", baseCurrencyId=" + baseCurrencyId +
                 ", currency=" + currency +
                 '}';

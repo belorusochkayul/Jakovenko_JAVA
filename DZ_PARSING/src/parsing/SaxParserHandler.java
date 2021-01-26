@@ -5,6 +5,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SaxParserHandler extends DefaultHandler implements Variables {
@@ -20,6 +21,7 @@ public class SaxParserHandler extends DefaultHandler implements Variables {
     private String name;
     private float rate;
     private boolean visible;
+    private Date date;
 
     public Root getRoot() {
         return root;
@@ -74,7 +76,11 @@ public class SaxParserHandler extends DefaultHandler implements Variables {
                     break;
                 }
                 case TAG_DATE: {
-                    root.setDate(new String(ch, start, length));
+                    DateParse dateParse = new DateParse();
+                    dateParse.strToDate(new String(ch, start, length));
+                    //root.setDateStr(new String(ch, start, length));
+                    date = dateParse.strToDate(new String(ch, start, length));
+                    root.setDate(date);
                     break;
                 }
                 case TAG_BASE_CURRENCY_ID: {
