@@ -1,4 +1,4 @@
-package parsing;
+package parsers;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -29,7 +29,6 @@ public class SaxParserHandler extends DefaultHandler implements Variables {
 
     @Override
     public void startDocument() throws SAXException {
-        // System.out.println("Start document");
     }
 
     @Override
@@ -78,7 +77,6 @@ public class SaxParserHandler extends DefaultHandler implements Variables {
                 case TAG_DATE: {
                     DateParse dateParse = new DateParse();
                     dateParse.strToDate(new String(ch, start, length));
-                    //root.setDateStr(new String(ch, start, length));
                     date = dateParse.strToDate(new String(ch, start, length));
                     root.setDate(date);
                     break;
@@ -90,7 +88,7 @@ public class SaxParserHandler extends DefaultHandler implements Variables {
             }
         }
 
-        if (isCurrent && isElement) {    //если вставляю swith внутрь этого if, то не рабоатет, все по нулям, сейчас работает..
+        if (isCurrent && isElement) {
         }
         switch (currentTagName) {
             case TAG_CODE: {

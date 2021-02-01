@@ -1,4 +1,4 @@
-package parsing;
+package parsers;
 
 public interface Variables {
     String TAG_BANK_NAME = "bankName";

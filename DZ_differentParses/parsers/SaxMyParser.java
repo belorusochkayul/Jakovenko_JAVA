@@ -1,16 +1,13 @@
-package parsing.model;
+package parsers;
 
 import org.xml.sax.SAXException;
-import parsing.ParserStrategy;
-import parsing.Root;
-import parsing.SaxParserHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
 
-public class SaxMyParser implements ParserStrategy {
+public class SaxMyParser implements ParserStratedgy {
 
     @Override
     public Root parse() {

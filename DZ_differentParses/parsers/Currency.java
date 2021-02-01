@@ -1,14 +1,13 @@
-package parsing;
+package parsers;
 
 public class Currency {
-
     private int code;
     private int id;
     private String name;
-    private float rate;
+    private double rate;
     private boolean visible;
 
-    public Currency(int code, int id, String name, float rate, boolean visible) {
+    public Currency(int code, int id, String name, double rate, boolean visible) {
         this.code = code;
         this.id = id;
         this.name = name;
@@ -28,12 +27,32 @@ public class Currency {
         return name;
     }
 
-    public float getRate() {
+    public double getRate() {
         return rate;
     }
 
     public boolean isVisible() {
         return visible;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     @Override
