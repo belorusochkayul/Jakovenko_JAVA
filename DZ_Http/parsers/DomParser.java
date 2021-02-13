@@ -1,19 +1,21 @@
 package parsers;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-    public class DomParser implements ParserStratedgy, Variables {
+    public class DomParser implements ParserStratedgy, Variables,UrlXmlUtils,DownloadStratedgy {
 
         @Override
-        public Root parse() {
+        public String load() {
+            return null;
+        }
+
+        @Override
+        public Root parse(String stringToParse) {
             Root root = new Root();
             Document doc;
             try {
@@ -82,9 +84,9 @@ import java.util.List;
         }
 
         private Document buildDocument() throws Exception {
-            File file = new File("currency.xml");
+
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            return dbf.newDocumentBuilder().parse(file);
+            return dbf.newDocumentBuilder().parse(URL);
         }
 
         private List<Currency> parsCurrency(Node currencyNode) {

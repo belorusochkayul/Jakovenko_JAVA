@@ -1,5 +1,7 @@
 package parsers;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class Root {
     private String bankLocation;
     private Date date;
     private int baseCurrencyId;
+    @JsonProperty("currency")
     private List<Currency> currencies;
 
     public void setBankName(String bankName) {

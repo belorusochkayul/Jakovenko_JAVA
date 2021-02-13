@@ -4,13 +4,12 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
 import java.io.IOException;
 
-public class SaxMyParser implements ParserStratedgy {
+public class SaxMyParser implements ParserStratedgy, UrlXmlUtils, DownloadStratedgy {
 
     @Override
-    public Root parse() {
+    public Root parse(String stringToParse) {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SaxParserHandler handler = new SaxParserHandler();
         SAXParser parser = null;
@@ -22,9 +21,8 @@ public class SaxMyParser implements ParserStratedgy {
             return null;
         }
 
-        File file = new File("currency.xml");
         try {
-            parser.parse(file, handler);
+            parser.parse(URL, handler);
         } catch (SAXException e) {
             System.out.println("Sax parsing error" + e.toString());
             return null;
@@ -34,5 +32,10 @@ public class SaxMyParser implements ParserStratedgy {
         }
         System.out.println("Вы выбрали SAX-парсер");
         return handler.getRoot();
+    }
+
+    @Override
+    public String load() {
+        return null;
     }
 }

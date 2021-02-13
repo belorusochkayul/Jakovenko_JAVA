@@ -7,6 +7,9 @@ public class Currency {
     private double rate;
     private boolean visible;
 
+    public Currency() {
+    }
+
     public Currency(int code, int id, String name, double rate, boolean visible) {
         this.code = code;
         this.id = id;
