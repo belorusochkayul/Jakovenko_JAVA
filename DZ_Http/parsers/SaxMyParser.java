@@ -6,7 +6,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
-public class SaxMyParser implements ParserStratedgy, UrlXmlUtils, DownloadStratedgy {
+public class SaxMyParser implements ParserStratedgy, UrlXmlUtils {
 
     @Override
     public Root parse(String stringToParse) {
@@ -32,10 +32,5 @@ public class SaxMyParser implements ParserStratedgy, UrlXmlUtils, DownloadStrate
         }
         System.out.println("Вы выбрали SAX-парсер");
         return handler.getRoot();
-    }
-
-    @Override
-    public String load() {
-        return null;
     }
 }

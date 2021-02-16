@@ -7,13 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-    public class DomParser implements ParserStratedgy, Variables,UrlXmlUtils,DownloadStratedgy {
-
-        @Override
-        public String load() {
-            return null;
-        }
-
+    public class DomParser implements ParserStratedgy, Variables,UrlXmlUtils {
         @Override
         public Root parse(String stringToParse) {
             Root root = new Root();
