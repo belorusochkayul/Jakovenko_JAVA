@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-    public class DomParser implements ParserStratedgy, Variables,UrlXmlUtils {
+    public class DomParserString implements ParseStratedgyEmpty, Variables,UrlXmlUtils {
         @Override
-        public Root parse(String stringToParse) {
+        public Root parse() {
             Root root = new Root();
             Document doc;
             try {

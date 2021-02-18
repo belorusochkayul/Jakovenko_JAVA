@@ -6,10 +6,15 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
-public class SaxMyParser implements ParserStratedgy, UrlXmlUtils {
+public class SaxMyParser implements ParseStratedgyEmpty,UrlXmlUtils {
+//private String url;
+//
+//    public SaxMyParser(String url) {
+//        this.url = url;
+//    }
 
     @Override
-    public Root parse(String stringToParse) {
+    public Root parse() {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SaxParserHandler handler = new SaxParserHandler();
         SAXParser parser = null;

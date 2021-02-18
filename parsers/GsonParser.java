@@ -3,7 +3,7 @@ package parsers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class GsonParser extends Downloader implements Variables, ParserStratedgy {
+public class GsonParser extends Downloader implements Variables, ParserStratedgyString {
 
     @Override
     public Root parse(String stringToParse) {

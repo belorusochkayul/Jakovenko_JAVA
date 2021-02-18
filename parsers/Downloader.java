@@ -7,9 +7,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Downloader {
-
-    public String load(String URL) {
+public class Downloader{
+       public static String load(String URL) {
 
         InputStream inputStream = null;
         try (OutputStream outputStream = new ByteArrayOutputStream()) {

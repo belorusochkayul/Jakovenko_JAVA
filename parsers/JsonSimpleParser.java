@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class JsonSimpleParser extends Downloader implements Variables, ParserStratedgy {
+public class JsonSimpleParser extends Downloader implements Variables, ParserStratedgyString {
 
     @Override
     public Root parse(String stringToParse) {
