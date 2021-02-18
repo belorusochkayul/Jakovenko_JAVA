@@ -3,10 +3,15 @@ package parsers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class GsonParser extends Downloader implements Variables, ParserStratedgyString {
+public class GsonParser extends Downloader implements Variables, ParseStratedgy {
+    private String stringToParse;
+
+    public GsonParser(String stringToParse) {
+        this.stringToParse = stringToParse;
+    }
 
     @Override
-    public Root parse(String stringToParse) {
+    public Root parse() {
 
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss Z").create();
 

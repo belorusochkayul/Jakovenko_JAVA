@@ -6,12 +6,13 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
-public class SaxMyParser implements ParseStratedgyEmpty,UrlXmlUtils {
-//private String url;
-//
-//    public SaxMyParser(String url) {
-//        this.url = url;
-//    }
+public class SaxMyParser implements ParseStratedgy {
+
+    private String url;
+
+    public SaxMyParser(String url) {
+        this.url = url;
+    }
 
     @Override
     public Root parse() {
@@ -27,7 +28,7 @@ public class SaxMyParser implements ParseStratedgyEmpty,UrlXmlUtils {
         }
 
         try {
-            parser.parse(URL, handler);
+            parser.parse(url, handler);
         } catch (SAXException e) {
             System.out.println("Sax parsing error" + e.toString());
             return null;

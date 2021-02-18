@@ -8,15 +8,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class JsonSimpleParser extends Downloader implements Variables, ParserStratedgyString {
+public class JsonSimpleParser extends Downloader implements Variables, ParseStratedgy {
+
+    private String strToParse;
+
+    public JsonSimpleParser(String strToParse) {
+        this.strToParse = strToParse;
+    }
 
     @Override
-    public Root parse(String stringToParse) {
+    public Root parse() {
 
         Root root = new Root();
         JSONParser parser = new JSONParser();
         try {
-            JSONObject rootJsonObject = (JSONObject) parser.parse(stringToParse);
+            JSONObject rootJsonObject = (JSONObject) parser.parse(strToParse);
             String bankName = (String) rootJsonObject.get(TAG_BANK_NAME);
             String bankLocation = (String) rootJsonObject.get(TAG_BANK_LOCATION);
             long baseCurrencyId = (long) rootJsonObject.get(TAG_BASE_CURRENCY_ID);

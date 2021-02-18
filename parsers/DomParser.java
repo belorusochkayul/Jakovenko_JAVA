@@ -7,9 +7,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-    public class DomParserString implements ParseStratedgyEmpty, Variables,UrlXmlUtils {
+    public class DomParser implements ParseStratedgy, Variables {
+        private String url;
+
+        public DomParser(String url) {
+            this.url = url;
+        }
+
         @Override
-        public Root parse() {
+        public Root parse() { 
             Root root = new Root();
             Document doc;
             try {
@@ -80,7 +86,7 @@ import java.util.List;
         private Document buildDocument() throws Exception {
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            return dbf.newDocumentBuilder().parse(URL);
+            return dbf.newDocumentBuilder().parse(url);
         }
 
         private List<Currency> parsCurrency(Node currencyNode) {
