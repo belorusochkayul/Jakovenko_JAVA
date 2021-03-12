@@ -3,17 +3,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateParse {
+    public static final String pattern = "yyyy-MM-dd HH:mm:ss Z";
 
     public static Date strToDate(String strDate) {
-
-        final String pattern = "yyyy-MM-dd HH:mm:ss Z";
         SimpleDateFormat template = new SimpleDateFormat(pattern);
-        Date date = null;
         try {
-            date = template.parse(strDate);
+            return template.parse(strDate);
         } catch (ParseException e) {
-            e.printStackTrace();
+            return null;
         }
-        return date;
     }
 }

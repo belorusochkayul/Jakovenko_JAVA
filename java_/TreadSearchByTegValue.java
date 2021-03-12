@@ -23,7 +23,7 @@ public class TreadSearchByTegValue extends Thread {
         for (News news : root.getNews()) {
             for (String value : news.getKeywords()) {
                 if (value.equals(keyWordValue)) {
-                    System.out.println("По ключевому слову: " + value + " результат поиска: " + news);
+                    System.out.println("результат поиска: " + news);
                 }
             }
         }

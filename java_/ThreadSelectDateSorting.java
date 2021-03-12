@@ -3,22 +3,21 @@ import java.util.Collections;
 //поток осуществляет сортировку новостей по возрастанию/убыванию даты
 public class ThreadSelectDateSorting extends Thread {
 
-    String dateSorting;
+    DateSortingType dateSorting;
     Root root;
 
-    public ThreadSelectDateSorting(String dateSorting, Root root) {
+    public ThreadSelectDateSorting(DateSortingType dateSorting, Root root) {
         this.dateSorting = dateSorting;
         this.root = root;
     }
-
     @Override
     public void run() {
         switch (dateSorting) {
-            case "1": {
+            case ASENDING: {
                 Collections.sort(root.getNews(), new SortByDateAscending());
                 break;
             }
-            case "2": {
+            case DESCENDING: {
                 Collections.sort(root.getNews(), new SortByDateDescending());
                 break;
             }

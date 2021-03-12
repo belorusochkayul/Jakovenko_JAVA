@@ -2,12 +2,14 @@
 //поток осуществляет парсинг файла, скаченного из интернета
 public class ThreadSelectDoParse extends Thread {
 
-    String parsingMethod;
-    public ThreadSelectDoParse(String parsingMethod) {
-        this.parsingMethod = parsingMethod;
+    private Root root;
+    private ParsingMethodType type;
+
+
+    public ThreadSelectDoParse(ParsingMethodType type) {
+        this.type = type;
     }
 
-    Root root;
     public Root getRoot() {
         return root;
     }
@@ -15,18 +17,18 @@ public class ThreadSelectDoParse extends Thread {
     @Override
     public void run() {
         ParseStratedgy parserStratedgy;
-        switch (parsingMethod) {
-            case "1": {
+        switch (type) {
+            case XML: {
                 parserStratedgy = new DomParser(UrlXmlUtils.URL);
                 break;
             }
-            case "2": {
+            case JSON: {
                 String strToParse = Downloader.load(UrlJsonUtils.URL);
                 parserStratedgy = new GsonParser(strToParse);
                 break;
             }
             default:
-                throw new IllegalStateException("Unexpected value: " + parsingMethod);
+                throw new IllegalStateException("Unexpected value: " + type);
         }
         root = parserStratedgy.parse();
         String resultToPrint = "Root " + root.toString();

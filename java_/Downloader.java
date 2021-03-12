@@ -13,7 +13,7 @@ public class Downloader {
         InputStream inputStream = null;
         try (OutputStream outputStream = new ByteArrayOutputStream()) {
 
-            java.net.URL url = new URL(URL);
+            URL url = new URL(URL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -31,7 +31,6 @@ public class Downloader {
             try {
                 inputStream.close();
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
         return null;

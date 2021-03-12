@@ -2,7 +2,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class GsonParser extends Downloader implements ParseStratedgy {
-    final String pattern = "yyyy-MM-dd HH:mm:ss Z";
     private String stringToParse;
 
     public GsonParser(String stringToParse) {
@@ -10,7 +9,7 @@ public class GsonParser extends Downloader implements ParseStratedgy {
     }
 
     public Root parse() {
-        Gson gson = new GsonBuilder().setDateFormat(pattern).create();
+        Gson gson = new GsonBuilder().setDateFormat(DateParse.pattern).create();
 
         try {
             Root root = gson.fromJson(stringToParse, Root.class);
